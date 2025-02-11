@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  workout: one
+  exercise: one
+  notes: MyText
+  order: 1
+
+two:
+  workout: two
+  exercise: two
+  notes: MyText
+  order: 1

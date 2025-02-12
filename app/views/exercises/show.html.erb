@@ -1,5 +1,9 @@
-<%= render @exercise %>
+<div class="container mx-auto px-4 py-8">
+  <%= render @exercise %>
 
-<%= link_to "Back",  exercises_path %>
-<%= link_to "Edit", edit_exercise_path(@exercise) %>
-<%= button_to "Delete", @product, method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+  <div class="flex justify-start gap-4 mt-6">
+    <%= link_to "Back", exercises_path, class: "text-gray-600 hover:text-gray-900 px-4 py-2 rounded-md border border-gray-300 hover:border-gray-400 transition duration-150" %>
+    <%= link_to "Edit", edit_exercise_path(@exercise), class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    <%= button_to "Delete", @exercise, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<%= render @exercise %>
+
+<%= link_to "Back",  exercises_path %>
+<%= link_to "Edit", edit_exercise_path(@exercise) %>
+<%= button_to "Delete", @product, method: :delete, data: { turbo_confirm: "Are you sure?" } %>

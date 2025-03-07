@@ -34,7 +34,7 @@
             <div class="flex space-x-3">
               <%= link_to 'Edit', edit_exercise_path(exercise), class: "text-indigo-600 hover:text-indigo-900" %>
               <%= button_to "Delete",
-                            @product,
+                            exercise,
                             method: :delete,
                             data: { turbo_confirm: "Are you sure?" },
                             class: "text-red-600 hover:text-red-900" %>

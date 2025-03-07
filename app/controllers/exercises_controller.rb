@@ -15,7 +15,7 @@ class ExercisesController < ApplicationController
   def create
     @exercise = Exercise.new(exercise_params)
     if @exercise.save
-      redirect_to @exercise, notice: 'Exercise was successfully created.'
+      redirect_to @exercise, notice: "Exercise was successfully created."
     else
       render :new
     end
@@ -26,7 +26,7 @@ class ExercisesController < ApplicationController
 
   def update
     if @exercise.update(exercise_params)
-      redirect_to @exercise, notice: 'Exercise was successfully updated.'
+      redirect_to @exercise, notice: "Exercise was successfully updated."
     else
       render :edit
     end
@@ -34,7 +34,7 @@ class ExercisesController < ApplicationController
 
   def destroy
     @exercise.destroy
-    redirect_to exercises_url, notice: 'Exercise was successfully destroyed.'
+    redirect_to exercises_url, notice: "Exercise was successfully destroyed."
   end
 
   private

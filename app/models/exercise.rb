@@ -18,7 +18,7 @@ class Exercise < ApplicationRecord
   # Category validation
   validates :category, inclusion: {
     in: EXERCISE_CATEGORIES,
-    message: '%{value} is not a valid category'
+    message: "%{value} is not a valid category"
   }
 
   # Custom cleanup

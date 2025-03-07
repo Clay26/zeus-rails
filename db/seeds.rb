@@ -19,34 +19,28 @@ exercises = [
   { name: "Incline Bench Press", category: "Chest", description: "A compound chest exercise that targets the upper chest." },
   { name: "Dumbbell Fly", category: "Chest", description: "An isolation chest exercise performed with dumbbells." },
   { name: "Push-up", category: "Chest", description: "A bodyweight exercise that targets the chest, shoulders, and triceps." },
-  
   # Back exercises
   { name: "Pull-up", category: "Back", description: "A compound back exercise performed by pulling yourself up to a bar." },
   { name: "Barbell Row", category: "Back", description: "A compound back exercise that targets the middle back and lats." },
   { name: "Lat Pulldown", category: "Back", description: "A machine exercise that targets the latissimus dorsi muscles." },
   { name: "Deadlift", category: "Back", description: "A compound full body exercise that primarily targets the posterior chain." },
-  
   # Legs exercises
   { name: "Squat", category: "Legs", description: "A compound lower body exercise that targets the quadriceps, hamstrings, and glutes." },
   { name: "Leg Press", category: "Legs", description: "A lower body exercise targeting the quadriceps, performed on a machine." },
   { name: "Romanian Deadlift", category: "Legs", description: "A hamstring-focused variation of the deadlift." },
   { name: "Calf Raise", category: "Legs", description: "An isolation exercise targeting the calves." },
-  
   # Shoulders exercises
   { name: "Overhead Press", category: "Shoulders", description: "A compound shoulder exercise performed standing with a barbell." },
   { name: "Lateral Raise", category: "Shoulders", description: "An isolation shoulder exercise targeting the lateral deltoids." },
   { name: "Face Pull", category: "Shoulders", description: "A rear deltoid and upper back exercise performed with a cable machine." },
-  
   # Arms exercises
   { name: "Bicep Curl", category: "Arms", description: "An isolation exercise targeting the biceps." },
   { name: "Tricep Extension", category: "Arms", description: "An isolation exercise targeting the triceps." },
   { name: "Hammer Curl", category: "Arms", description: "A bicep exercise that also targets the brachialis and forearms." },
-  
   # Core exercises
   { name: "Plank", category: "Core", description: "An isometric core exercise that strengthens the abdominals and back." },
   { name: "Russian Twist", category: "Core", description: "A rotational exercise that targets the obliques." },
   { name: "Leg Raise", category: "Core", description: "A lower abdominal exercise performed by raising the legs while lying on the back." },
-  
   # Cardio exercises
   { name: "Running", category: "Cardio", description: "A cardiovascular exercise performed at various intensities." },
   { name: "Cycling", category: "Cardio", description: "A low-impact cardiovascular exercise performed on a bicycle or stationary bike." },

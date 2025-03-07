@@ -2,12 +2,12 @@
 
 one:
   workout: one
-  exercise: one
+  exercise: squat
   notes: MyText
   order: 1
 
 two:
   workout: two
-  exercise: two
+  exercise: squat
   notes: MyText
   order: 1

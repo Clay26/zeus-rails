@@ -16,7 +16,7 @@ module ActiveSupport
   # Devise integration
   class ActionDispatch::IntegrationTest
     include Devise::Test::IntegrationHelpers
-    
+
     def sign_in_user(user = nil)
       user ||= users(:regular_user) # Default to a regular user fixture
       sign_in user

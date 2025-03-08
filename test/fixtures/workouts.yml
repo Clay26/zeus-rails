@@ -1,13 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: one
+  user: regular_user
   date: 2025-02-10 22:53:07
   name: MyString
   notes: MyText
 
 two:
-  user: two
+  user: regular_user
   date: 2025-02-10 22:53:07
   name: MyString
   notes: MyText

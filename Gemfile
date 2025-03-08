@@ -42,6 +42,8 @@ gem "thruster", require: false
 # Add mutex_m for RubyMine test service
 gem "mutex_m", require: false
 
+gem "devise"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

@@ -18,14 +18,20 @@
             </svg>
           </div>
           <h2 class="mt-4 text-lg font-medium text-gray-900">
-            Hello, <%= current_user.email %>!
+            Hello, <%= current_user.name %>!
           </h2>
           <p class="mt-2 text-sm text-gray-500">
             We're glad to see you back.
           </p>
+          <div>
+            <%= link_to "Exercises", exercises_path,
+              class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" 
+            %>
+          </div>
           <div class="mt-6">
-            <%= link_to 'Logout', destroy_user_session_path, 
+            <%= button_to 'Logout', destroy_user_session_path, 
               method: :delete, 
+              data: { turbo_confirm: "Are you sure?" },
               class: "w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" 
             %>
           </div>

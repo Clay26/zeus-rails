@@ -18,7 +18,7 @@ class ExercisesController < ApplicationController
     if @exercise.save
       redirect_to @exercise, notice: "Exercise was successfully created."
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -29,7 +29,7 @@ class ExercisesController < ApplicationController
     if @exercise.update(exercise_params)
       redirect_to @exercise, notice: "Exercise was successfully updated."
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

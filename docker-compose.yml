@@ -1,0 +1,15 @@
+version: '3'
+services:
+  db:
+    image: postgres:16
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: zeus_development
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:

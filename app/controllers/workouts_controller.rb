@@ -3,7 +3,11 @@ class WorkoutsController < ApplicationController
   before_action :set_workout, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @workouts = current_user.workouts.order(created_at: :desc)
+    @workouts = current_user.workouts.where(is_template: false).order(created_at: :desc)
+  end
+
+  def templates
+    @workouts = current_user.workouts.where(is_template: true)
   end
 
   def show

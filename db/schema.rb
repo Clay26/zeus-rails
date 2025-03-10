@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_08_034624) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_10_024037) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
   create_table "exercise_sets", force: :cascade do |t|
     t.integer "workout_exercise_id", null: false
     t.integer "reps"
@@ -56,11 +59,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_08_034624) do
 
   create_table "workouts", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.datetime "date"
     t.string "name"
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0, null: false
+    t.boolean "is_template", default: false, null: false
+    t.datetime "started_at"
+    t.datetime "ended_at"
     t.index ["user_id"], name: "index_workouts_on_user_id"
   end
 

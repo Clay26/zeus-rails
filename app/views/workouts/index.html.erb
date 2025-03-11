@@ -11,17 +11,26 @@
     <div class="flex gap-2">
       <div class="flex items-center text-gray-500 hover:text-indigo-800 hover:bg-indigo-100 rounded-lg font-medium px-4 py-2 gap-2">
         <%= inline_svg_tag "icons/layout-grid.svg", class: "responsive-icon h-5 w-5" %>
-        <%= link_to "List View", url_for(request.path_parameters.merge(request.query_parameters).merge(tab: "completed")) %>
+        <%= link_to "List View",
+          url_for(request.path_parameters.merge(request.query_parameters).merge(tab: "completed")),
+          data: {turbo_frame: "workouts"}
+        %>
       </div>
 
       <div class="flex items-center text-gray-500 hover:text-indigo-800 hover:bg-indigo-100 rounded-lg font-medium px-4 py-2 gap-2">
         <%= inline_svg_tag "icons/notebook-text.svg", class: "responsive-icon h-5 w-5" %>
-        <%= link_to "Templates", url_for(request.path_parameters.merge(request.query_parameters).merge(tab: "templates")) %>
+        <%= link_to "Templates",
+          url_for(request.path_parameters.merge(request.query_parameters).merge(tab: "templates")),
+          data: {turbo_frame: "workouts"}
+        %>
       </div>
 
       <div class="flex items-center text-gray-500 hover:text-indigo-800 hover:bg-indigo-100 rounded-lg font-medium px-4 py-2 gap-2">
         <%= inline_svg_tag "icons/chart-no-axes-column-increasing.svg", class: "responsive-icon h-5 w-5" %>
-        <%= link_to "Stats", url_for(request.path_parameters.merge(request.query_parameters).merge(tab: "templates")) %>
+        <%= link_to "Stats",
+          url_for(request.path_parameters.merge(request.query_parameters).merge(tab: "templates")),
+          data: {turbo_frame: "workouts"}
+        %>
       </div>
     </div>
 
@@ -33,9 +42,6 @@
     </div>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-    <% @workouts.each do |workout| %>
-      <%= render partial: 'workout_card', locals: { workout: workout } %>
-    <% end %>
-  </div>
+  <! -- Exercise List changes based off selected tab using turbo frames -->
+  <%= render partial: 'workout_list', locals: { workouts: @workouts } %>
 </div>

@@ -1,0 +1,7 @@
+<turbo-frame id="workouts">
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+    <% workouts.each do |workout| %>
+      <%= render partial: 'workout_card', locals: { workout: workout } %>
+    <% end %>
+  </div>
+</turbo-frame>

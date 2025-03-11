@@ -3,8 +3,22 @@ class WorkoutsController < ApplicationController
   before_action :set_workout, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    @workouts = current_user.workouts.order(started_at: :desc)
-    @workouts = @workouts.where(is_template: true) if params[:tab] == "templates"
+    case params[:tab]
+    when "templates"
+      @workouts = current_user.workouts.where(is_template: true).order(started_at: :desc)
+      if turbo_frame_request?
+        render partial: "workout_list", locals: { workouts: @workouts }
+      else
+        render :index
+      end
+    else
+      @workouts = current_user.workouts.where(status: :completed).order(started_at: :desc)
+      if turbo_frame_request?
+        render partial: "workout_list", locals: { workouts: @workouts }
+      else
+        render :index
+      end
+    end
   end
 
   def templates
@@ -44,13 +58,13 @@ class WorkoutsController < ApplicationController
   end
 
   private
-    def workout_params
-      params.require(:workout).permit(:name, :started_at, :ended_at, :status, :is_template)
-    end
+  def workout_params
+    params.require(:workout).permit(:name, :started_at, :ended_at, :status, :is_template)
+  end
 
-    def set_workout
-      @workout = current_user.workouts.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      redirect_to workouts_path, alert: 'Workout not found.'
-    end
+  def set_workout
+    @workout = current_user.workouts.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to workouts_path, alert: 'Workout not found.'
+  end
 end

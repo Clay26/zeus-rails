@@ -44,6 +44,8 @@ gem "mutex_m", require: false
 
 gem "devise"
 
+gem 'inline_svg', '~> 1.10'
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 

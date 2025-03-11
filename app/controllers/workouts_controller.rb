@@ -4,7 +4,7 @@ class WorkoutsController < ApplicationController
 
   def index
     @workouts = current_user.workouts.order(started_at: :desc)
-    @workouts = @workouts.where(is_template: true) if params[:view] == "templates"
+    @workouts = @workouts.where(is_template: true) if params[:tab] == "templates"
   end
 
   def templates
@@ -45,7 +45,7 @@ class WorkoutsController < ApplicationController
 
   private
     def workout_params
-      params.require(:workout).permit(:name, :started_at, :ended_at, :status, :is_template, :view)
+      params.require(:workout).permit(:name, :started_at, :ended_at, :status, :is_template)
     end
 
     def set_workout

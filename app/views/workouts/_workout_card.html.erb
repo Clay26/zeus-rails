@@ -1,22 +1,35 @@
-<div>
-  <h3>
-    <%= workout.name %>
-  </h3>
-</div>
+<div class="bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition-shadow">
+  <div class="flex justify-between items-start">
+    <div>
+      <div class="flex items-center gap-2">
+        <h3 class="text-lg font-semibold text-gray-900"><%= workout.name %></h3>
+      </div>
+      <p class="text-gray-500 text-sm"><%= workout.started_at.to_date %></p>
+    </div>
 
-<div>
-  <p> <%= workout.started_at.to_date %> </p>
-</div>
+    <div class="flex gap-2">
+      <%= link_to edit_workout_path(workout), class: "p-2 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-full" do %>
+        <%= inline_svg_tag "icons/edit.svg", class: "h-4 w-4" %>
+      <% end %>
+      <%= button_to workout, method: :delete, 
+          class: "p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-full",
+          form: { data: { turbo_confirm: "Are you sure?" } } do %>
+        <%= inline_svg_tag "icons/trash-2.svg", class: "h-4 w-4" %>
+      <% end %>
+    </div>
 
-<div>
-  <p> <%= ((workout.ended_at.to_time - workout.started_at.to_time) / 60).to_i %> min</p>
-  <p> <%= workout.workout_exercises.count %> </p>
-</div>
+  </div>
 
-<div>
-  <%= link_to "", edit_workout_path(workout) %>
-  <%= button_to "Delete",
-    workout,
-    method: :delete,
-    data: { turbo_confirm: "Are you sure?" } %>
+  <div class="grid grid-cols-2 gap-4 mt-4">
+    <div class="flex items-center gap-2 text-gray-700">
+      <%= inline_svg_tag "icons/clock.svg", class: "h-4 w-4 text-gray-400" %>
+      <span> <%= ((workout.ended_at.to_time - workout.started_at.to_time) / 60).to_i %> min</span>
+    </div>
+
+    <div class="flex items-center gap-2 text-gray-700">
+      <%= inline_svg_tag "icons/dumbbell.svg", class: "h-4 w-4 text-gray-400" %>
+      <span> <%= workout.workout_exercises.count %> exercises</span>
+    </div>
+
+  </div>
 </div>

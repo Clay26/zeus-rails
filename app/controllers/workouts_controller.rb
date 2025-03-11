@@ -7,7 +7,7 @@ class WorkoutsController < ApplicationController
     when "templates"
       @workouts = current_user.workouts.where(is_template: true).order(started_at: :desc)
       if turbo_frame_request?
-        render partial: "workout_list", locals: { workouts: @workouts }
+        render partial: "template_list", locals: { workouts: @workouts }
       else
         render :index
       end

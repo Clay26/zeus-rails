@@ -1,4 +1,4 @@
-<div class="bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition-shadow">
+<div class="bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition-shadow overflow-hidden">
   <div class="flex justify-between items-start">
     <div>
       <div class="flex items-center gap-2">
@@ -9,27 +9,24 @@
 
     <div class="flex gap-2">
       <%= link_to edit_workout_path(workout), class: "p-2 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-full" do %>
-        <%= inline_svg_tag "icons/edit.svg", class: "h-4 w-4" %>
+        <%= inline_svg_tag "icons/pencil-line.svg", class: "responsive-icon" %>
       <% end %>
       <%= button_to workout, method: :delete, 
-          class: "p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-full",
+          class: "p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-full cursor-pointer",
           form: { data: { turbo_confirm: "Are you sure?" } } do %>
-        <%= inline_svg_tag "icons/trash-2.svg", class: "h-4 w-4" %>
+        <%= inline_svg_tag "icons/trash-2.svg", class: "responsive-icon" %>
       <% end %>
     </div>
-
   </div>
 
   <div class="grid grid-cols-2 gap-4 mt-4">
     <div class="flex items-center gap-2 text-gray-700">
-      <%= inline_svg_tag "icons/clock.svg", class: "h-4 w-4 text-gray-400" %>
-      <span> <%= ((workout.ended_at.to_time - workout.started_at.to_time) / 60).to_i %> min</span>
+      <%= inline_svg_tag "icons/clock.svg", class: "responsive-icon text-gray-400" %>
+      <span><%= ((workout.ended_at.to_time - workout.started_at.to_time) / 60).to_i %> min</span>
     </div>
-
     <div class="flex items-center gap-2 text-gray-700">
-      <%= inline_svg_tag "icons/dumbbell.svg", class: "h-4 w-4 text-gray-400" %>
-      <span> <%= workout.workout_exercises.count %> exercises</span>
+      <%= inline_svg_tag "icons/dumbbell.svg", class: "responsive-icon text-gray-400" %>
+      <span><%= workout.workout_exercises.count %> exercises</span>
     </div>
-
   </div>
 </div>

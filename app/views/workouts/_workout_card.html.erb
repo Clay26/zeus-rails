@@ -1,0 +1,22 @@
+<div>
+  <h3>
+    <%= workout.name %>
+  </h3>
+</div>
+
+<div>
+  <p> <%= workout.started_at.to_date %> </p>
+</div>
+
+<div>
+  <p> <%= ((workout.ended_at.to_time - workout.started_at.to_time) / 60).to_i %> min</p>
+  <p> <%= workout.workout_exercises.count %> </p>
+</div>
+
+<div>
+  <%= link_to "", edit_workout_path(workout) %>
+  <%= button_to "Delete",
+    workout,
+    method: :delete,
+    data: { turbo_confirm: "Are you sure?" } %>
+</div>

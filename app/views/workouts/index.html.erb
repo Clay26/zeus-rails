@@ -1,4 +1,4 @@
-<div>
+<div class="flex flex-col gap-4">
   <div class="flex justify-between mb-4">
     <h1 class="font-bold text-4xl">My Workouts</h1>
     <%= link_to 'New Workout Template',
@@ -6,6 +6,33 @@
       class: "bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-150"
     %>
   </div>
+
+  <div class="flex justify-between bg-white px-4 py-2 rounded-xl">
+    <div class="flex gap-2">
+      <div class="flex items-center text-gray-500 hover:text-indigo-800 hover:bg-indigo-100 rounded-lg font-medium px-4 py-2 gap-2">
+        <%= inline_svg_tag "icons/layout-grid.svg", class: "responsive-icon h-5 w-5" %>
+        <%= link_to "List View", url_for(request.path_parameters.merge(request.query_parameters).merge(view: "completed")) %>
+      </div>
+
+      <div class="flex items-center text-gray-500 hover:text-indigo-800 hover:bg-indigo-100 rounded-lg font-medium px-4 py-2 gap-2">
+        <%= inline_svg_tag "icons/notebook-text.svg", class: "responsive-icon" %>
+        <%= link_to "Templates", url_for(request.path_parameters.merge(request.query_parameters).merge(view: "templates")) %>
+      </div>
+
+      <div class="flex items-center text-gray-500 hover:text-indigo-800 hover:bg-indigo-100 rounded-lg font-medium px-4 py-2 gap-2">
+        <%= inline_svg_tag "icons/chart-no-axes-column-increasing.svg", class: "responsive-icon" %>
+        <%= link_to "Stats", url_for(request.path_parameters.merge(request.query_parameters).merge(view: "templates")) %>
+      </div>
+    </div>
+
+    <div class="flex gap-4">
+      <div class="flex items-center border border-gray-500 text-gray-700 rounded-lg font-medium px-4 py-2 gap-2">
+        <%= inline_svg_tag "icons/filter.svg", class: "responsive-icon h-5 w-5" %>
+        <%= link_to "Filter", url_for(request.path_parameters.merge(request.query_parameters).merge(view: "completed")) %>
+      </div>
+    </div>
+  </div>
+
   <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
     <% @workouts.each do |workout| %>
       <%= render partial: 'workout_card', locals: { workout: workout } %>

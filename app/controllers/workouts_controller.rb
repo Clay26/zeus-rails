@@ -52,7 +52,7 @@ class WorkoutsController < ApplicationController
 
   def destroy
     @workout.destroy
-    redirect_to workouts_path, notice: "Workout was successfully destroyed."
+    redirect_back fallback_location: workouts_path, notice: "Workout was successfully destroyed."
   end
 
   private

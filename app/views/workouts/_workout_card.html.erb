@@ -1,31 +1,10 @@
-<div 
-  data-controller="clickable-card"
-  data-clickable-card-url-value="<%= workout_path(workout) %>"
-  data-action="click->clickable-card#navigate"
-  class="bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition-shadow overflow-hidden cursor-pointer">
-  <div class="flex justify-between items-start">
-    <div>
-      <div class="flex items-center gap-2">
-        <h3 class="text-lg font-semibold text-gray-900"><%= workout.name %></h3>
-      </div>
-      <p class="text-gray-500 text-sm"><%= workout.started_at.to_date %></p>
-    </div>
-
-    <div class="flex gap-2">
-      <%= link_to edit_workout_path(workout),
-        target: "_top",
-        data: { action: "click->clickable-card#stop" },
-        class: "p-2 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-full" do %>
-        <%= inline_svg_tag "icons/pencil-line.svg", class: "responsive-icon" %>
-      <% end %>
-      <%= button_to workout, method: :delete,
-        data: { action: "click->clickable-card#stop" },
-        class: "p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-full cursor-pointer",
-        form: { data: { turbo_confirm: "Are you sure?" } } do %>
-        <%= inline_svg_tag "icons/trash-2.svg", class: "responsive-icon" %>
-      <% end %>
-    </div>
-  </div>
+<%= render "workouts/card_frame",
+  card_url: workout_path(workout),
+  card_name: workout.name,
+  card_date: workout.started_at.to_date,
+  edit_path: edit_workout_path(workout),
+  delete_path: workout,
+  extra_formatting: "" do %>
 
   <div class="grid grid-cols-2 gap-4 mt-4">
     <div class="flex items-center gap-2 text-gray-700">
@@ -37,4 +16,4 @@
       <span><%= workout.workout_exercises.count %> exercises</span>
     </div>
   </div>
-</div>
+<% end %>

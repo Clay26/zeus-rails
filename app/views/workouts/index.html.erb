@@ -7,7 +7,7 @@
     %>
   </div>
 
-  <div class="flex justify-between bg-white px-4 py-2 rounded-xl">
+  <div class="flex justify-between bg-white px-4 py-2 rounded-xl shadow-sm">
     <div class="flex gap-2">
       <%= link_to url_for(request.path_parameters.merge(request.query_parameters).merge(tab: "completed")),
         data: {turbo_frame: "workouts"} do %>

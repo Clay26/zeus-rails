@@ -7,41 +7,43 @@
     %>
   </div>
 
-  <div class="flex justify-between bg-white px-4 py-2 rounded-xl shadow-sm">
-    <div class="flex gap-2">
-      <%= link_to url_for(request.path_parameters.merge(request.query_parameters).merge(tab: "completed")),
-        data: {turbo_frame: "workouts"} do %>
-        <div class="flex items-center text-gray-500 hover:text-indigo-800 hover:bg-indigo-100 rounded-lg font-medium px-4 py-2 gap-2">
-          <%= inline_svg_tag "icons/layout-grid.svg", class: "responsive-icon h-5 w-5" %>
-          List View
-        </div>
-      <% end %>
+  <div class="flex flex-col gap-4" data-controller="workout-tab">
+    <div class="flex justify-between bg-white px-4 py-2 rounded-xl shadow-sm">
+      <div class="flex gap-2">
+        <%= link_to url_for(request.path_parameters.merge(request.query_parameters).merge(tab: "completed")),
+          data: {turbo_frame: "workouts", workout_tab_target: "tab"} do %>
+          <div class="flex items-center text-gray-500 hover:text-indigo-800 hover:bg-indigo-100 rounded-lg font-medium px-4 py-2 gap-2">
+            <%= inline_svg_tag "icons/layout-grid.svg", class: "responsive-icon h-5 w-5" %>
+            Completed
+          </div>
+        <% end %>
 
-      <%= link_to url_for(request.path_parameters.merge(request.query_parameters).merge(tab: "templates")),
-        data: {turbo_frame: "workouts"} do %>
-        <div class="flex items-center text-gray-500 hover:text-indigo-800 hover:bg-indigo-100 rounded-lg font-medium px-4 py-2 gap-2">
-          <%= inline_svg_tag "icons/notebook-text.svg", class: "responsive-icon h-5 w-5" %>
-          Templates
-        </div>
-      <% end %>
+        <%= link_to url_for(request.path_parameters.merge(request.query_parameters).merge(tab: "templates")),
+          data: {turbo_frame: "workouts", workout_tab_target: "tab"} do %>
+          <div class="flex items-center text-gray-500 hover:text-indigo-800 hover:bg-indigo-100 rounded-lg font-medium px-4 py-2 gap-2">
+            <%= inline_svg_tag "icons/notebook-text.svg", class: "responsive-icon h-5 w-5" %>
+            Templates
+          </div>
+        <% end %>
 
-      <%= link_to url_for(request.path_parameters.merge(request.query_parameters).merge(tab: "stats")),
-        data: {turbo_frame: "workouts"} do %>
-        <div class="flex items-center text-gray-500 hover:text-indigo-800 hover:bg-indigo-100 rounded-lg font-medium px-4 py-2 gap-2">
-          <%= inline_svg_tag "icons/chart-no-axes-column-increasing.svg", class: "responsive-icon h-5 w-5" %>
-          Stats
-        </div>
-      <% end %>
-    </div>
+        <%= link_to url_for(request.path_parameters.merge(request.query_parameters).merge(tab: "stats")),
+          data: {turbo_frame: "workouts", workout_tab_target: "tab"} do %>
+          <div class="flex items-center text-gray-500 hover:text-indigo-800 hover:bg-indigo-100 rounded-lg font-medium px-4 py-2 gap-2">
+            <%= inline_svg_tag "icons/chart-no-axes-column-increasing.svg", class: "responsive-icon h-5 w-5" %>
+            Stats
+          </div>
+        <% end %>
+      </div>
 
-    <div class="flex gap-4">
-      <div class="flex items-center border border-gray-500 text-gray-700 rounded-lg font-medium px-4 py-2 gap-2">
-        <%= inline_svg_tag "icons/filter.svg", class: "responsive-icon h-5 w-5" %>
-        <%= link_to "Filter", url_for(request.path_parameters.merge(request.query_parameters).merge(tab: "completed")) %>
+      <div class="flex gap-4">
+        <div class="flex items-center border border-gray-500 text-gray-700 rounded-lg font-medium px-4 py-2 gap-2">
+          <%= inline_svg_tag "icons/filter.svg", class: "responsive-icon h-5 w-5" %>
+          <%= link_to "Filter", url_for(request.path_parameters.merge(request.query_parameters).merge(tab: "completed")) %>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Exercise List changes based off selected tab using turbo frames -->
-  <%= render partial: @partial, locals: { workouts: @workouts } %>
+    <!-- Exercise List changes based off selected tab using turbo frames -->
+    <%= render partial: @partial, locals: { workouts: @workouts } %>
+  </div>
 </div>

@@ -4,4 +4,8 @@
   .responsive-icon {
     @apply h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6;
   }
+
+  .active {
+    @apply !text-indigo-800 !bg-indigo-100;
+  }
 }

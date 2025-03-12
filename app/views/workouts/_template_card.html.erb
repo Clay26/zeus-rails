@@ -1,4 +1,4 @@
-<div class="bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition-shadow overflow-hidden">
+<div class="bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition-shadow overflow-hidden border-l-4 border-purple-500">
   <div class="flex justify-between items-start">
     <div>
       <div class="flex items-center gap-2">
@@ -8,7 +8,9 @@
     </div>
 
     <div class="flex gap-2">
-      <%= link_to edit_workout_path(template), class: "p-2 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-full" do %>
+      <%= link_to edit_workout_path(template),
+        target: "_top",
+        class: "p-2 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-full" do %>
         <%= inline_svg_tag "icons/pencil-line.svg", class: "responsive-icon" %>
       <% end %>
       <%= button_to template, method: :delete, 
@@ -24,5 +26,13 @@
       <%= inline_svg_tag "icons/dumbbell.svg", class: "responsive-icon text-gray-400" %>
       <span><%= template.workout_exercises.count %> exercises</span>
     </div>
+  </div>
+
+  <div class="flex grow align-center">
+    <%= link_to "Start Workout",
+      exercises_path,
+      target: "_top",
+      class: "mt-4 px-6 py-2 w-full text-center text-indigo-700 bg-indigo-100 hover:bg-indigo-200 rounded-lg font-medium"
+    %>
   </div>
 </div>

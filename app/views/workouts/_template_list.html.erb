@@ -1,7 +1,18 @@
 <turbo-frame id="workouts">
   <div class="grid grid-cols-1 gap-4">
-    <% workouts.each do |template| %>
-      <%= render partial: 'template_card', locals: { template: template } %>
-    <% end %>
+    <div class="grid grid-cols-1 gap-4">
+      <% workouts.each do |template| %>
+        <%= render partial: 'template_card', locals: { template: template } %>
+      <% end %>
+    </div>
+    <div class="flex flex-col flex-grow items-center bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition-shadow overflow-hidden border-l-4 border-gray-300 border-dashed">
+      <%= link_to exercises_path,
+        target: "_top",
+        class: "w-12 h-12 sm:h-16 sm:w-16 sm:p-2 flex items-center justify-center mb-4 text-gray-500 bg-gray-100 hover:text-indigo-600 hover:bg-indigo-100 rounded-full" do %>
+        <%= inline_svg_tag "icons/plus.svg", class: "h-6 w-6 sm:h-8 sm:w-8" %>
+      <% end %>
+      <h3 class="text-lg font-semibold text-gray-700 mb-2">Create New Template</h3>
+      <p class="text-sm text-center text-gray-500 mb-4">Design your own workout routine</p>
+    </div>
   </div>
 </turbo-frame>

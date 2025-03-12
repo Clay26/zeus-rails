@@ -11,12 +11,11 @@ class WorkoutsController < ApplicationController
       @workouts = current_user.workouts.where(status: :completed).order(started_at: :desc)
       @partial = "workout_list"
     end
-
-    respond_to do |format|
-      format.html
-      format.turbo_stream do
-        render partial: @partial, locals: { workouts: @workouts }
-      end
+    
+    if turbo_frame_request?
+      render partial: @partial, locals: { workouts: @workouts }
+    else
+      render :index
     end
   end
 

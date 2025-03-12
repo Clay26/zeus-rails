@@ -21,21 +21,21 @@ export default class extends Controller {
     this.showActiveTab()
   }
 
-showActiveTab() {
-  const urlParams = new URLSearchParams(window.location.search)
-  const currentTab = urlParams.get("tab") || "completed"
+  showActiveTab() {
+    const urlParams = new URLSearchParams(window.location.search)
+    const currentTab = urlParams.get("tab") || "completed"
 
-  this.tabTargets.forEach(link => {
-    const innerDiv = link.querySelector("div")
-    if (!innerDiv) {
-      return
-    }
+    this.tabTargets.forEach(link => {
+      const innerDiv = link.querySelector("div")
+      if (!innerDiv) {
+        return
+      }
 
-    if (link.href.includes(`tab=${currentTab}`)) {
-      innerDiv.classList.add("active")
-    } else {
-      innerDiv.classList.remove("active")
-    }
-  })
-}
+      if (link.href.includes(`tab=${currentTab}`)) {
+        innerDiv.classList.add("active")
+      } else {
+        innerDiv.classList.remove("active")
+      }
+    })
+  }
 }

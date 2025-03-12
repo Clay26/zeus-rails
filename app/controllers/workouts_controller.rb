@@ -6,15 +6,17 @@ class WorkoutsController < ApplicationController
     case params[:tab]
     when "templates"
       @workouts = current_user.workouts.where(is_template: true).order(started_at: :desc)
+      @partial = "template_list"
       if turbo_frame_request?
-        render partial: "template_list", locals: { workouts: @workouts }
+        render partial: @partial, locals: { workouts: @workouts }
       else
         render :index
       end
     else
       @workouts = current_user.workouts.where(status: :completed).order(started_at: :desc)
+      @partial = "workout_list"
       if turbo_frame_request?
-        render partial: "workout_list", locals: { workouts: @workouts }
+        render partial: @partial, locals: { workouts: @workouts }
       else
         render :index
       end

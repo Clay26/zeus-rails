@@ -43,5 +43,5 @@
   </div>
 
   <! -- Exercise List changes based off selected tab using turbo frames -->
-  <%= render partial: 'workout_list', locals: { workouts: @workouts } %>
+  <%= render partial: @partial, locals: { workouts: @workouts } %>
 </div>

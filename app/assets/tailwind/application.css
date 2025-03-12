@@ -6,6 +6,6 @@
   }
 
   .active {
-    @apply !text-indigo-800 !bg-indigo-100;
+    @apply !bg-blue-500 !text-white;
   }
 }

@@ -10,4 +10,8 @@ class Workout < ApplicationRecord
   validates :is_template, inclusion: { in: [true, false] }
   validates :started_at, presence: true, unless: :is_template?
   validates :ended_at, comparison: { greater_than: :started_at }, if: -> { started_at.present? && ended_at.present? }
+  validates :weight_unit, inclusion: {
+    in: %w(lbs kg),
+    message: "%{value} is not a valid weight unit"
+  }
 end

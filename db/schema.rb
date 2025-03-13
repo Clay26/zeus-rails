@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_10_024037) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_13_145637) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -67,6 +67,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_10_024037) do
     t.boolean "is_template", default: false, null: false
     t.datetime "started_at"
     t.datetime "ended_at"
+    t.string "weight_unit", default: "lbs"
     t.index ["user_id"], name: "index_workouts_on_user_id"
   end
 

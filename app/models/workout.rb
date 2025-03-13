@@ -1,6 +1,7 @@
 class Workout < ApplicationRecord
   belongs_to :user
   has_many :workout_exercises, dependent: :destroy
+  accepts_nested_attributes_for :workout_exercises, allow_destroy: true
   has_many :exercises, through: :workout_exercises
 
   enum :status, { draft: 0, in_progress: 1, completed: 2, cancelled: 3 }

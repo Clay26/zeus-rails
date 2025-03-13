@@ -1,7 +1,7 @@
 <%= render "workouts/card_frame",
   card_url: workout_path(template),
   card_name: template.name,
-  card_date: template.started_at.to_date,
+  card_date: template.created_at.to_date,
   edit_path: edit_workout_path(template),
   delete_path: template,
   extra_formatting: "border-l-4 border-purple-500" do %>

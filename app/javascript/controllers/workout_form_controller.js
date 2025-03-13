@@ -1,7 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["exercises", "exerciseTemplate", "exerciseSets", "setTemplate"]
+  static targets = ["exercises", "exerciseTemplate", "exerciseSets", "setTemplate", "toggle", "unitField"]
+
+  connect() {
+    this.showSelectedUnit()
+  }
 
   addExerciseToTemplate(event) {
     event.preventDefault()
@@ -27,5 +31,26 @@ export default class extends Controller {
     event.preventDefault()
     const wrapper = event.currentTarget.closest(".exercise-set-fields")
     wrapper.remove()
+  }
+
+  toggleUnit(event) {
+    event.preventDefault()
+
+    this.toggleTargets.forEach((button) => button.classList.remove("active"))
+    event.currentTarget.classList.add("active")
+
+    this.unitFieldTarget.value = event.currentTarget.innerText.trim().toLowerCase()
+  }
+
+  showSelectedUnit() {
+    const selectedUnit = this.unitFieldTarget.value
+
+    this.toggleTargets.forEach((button) => {
+      if (button.dataset.unit == selectedUnit) {
+        button.classList.add("active")
+      } else {
+        button.classList.remove("active")
+      }
+    });
   }
 }

@@ -1,26 +1,68 @@
-<div data-controller="workout-form">
-  <%= form_with model: workout, local: true do |f| %>
+<%= form_with model: workout do |f| %>
+  <div data-controller="workout-form" class="space-y-6">
+
     <%= hidden_field_tag :template, params[:template] || @workout.is_template %>
-    <div>
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
+
+    <!-- Workout Fields -->
+    <div class="bg-white rounded-xl shadow-sm mb-8 p-8 border border-gray-100">
+      <div class="grid grid-cols-1 2xl:grid-cols-2 gap-6">
+        <div>
+          <%= f.label :name, "Template Name", class: "block text-sm font-medium text-gray-600 mb-2" %>
+          <%= f.text_field :name,
+            placeholder: "e.g. Upper Body Push Day",
+            class: "w-full border border-gray-200 rounded-md focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 shadow-sm px-3 py-2" %>
+        </div>
+
+        <div>
+          <%= f.label :notes, "Notes", class: "block text-sm font-medium text-gray-600 mb-2" %>
+          <%= f.text_area :notes,
+            class: "w-full border border-gray-200 rounded-md focus:ring-1 focus:ring-indigo-400 focus:border-indigo-400 shadow-sm px-3 py-2" %>
+        </div>
+      </div>
+
+      <!-- Weight Unit toggle -->
+      <div class="mt-6 flex items-center">
+        <span class="text-sm font-medium text-gray-600 mr-3">Weight Unit:</span>
+        <div class="bg-gray-100 rounded-lg p-0.5 flex shadow-inner">
+          <button data-action="workout-form#toggleUnit",
+                  data-workout-form-target="toggle",
+                  data-unit="lbs",
+                  class="px-4 py-1.5 rounded-md text-sm font-medium text-gray-500 cursor-pointer active">lbs</button>
+          <button data-action="workout-form#toggleUnit",
+                  data-workout-form-target="toggle",
+                  data-unit="kg",
+                  class="px-4 py-1.5 rounded-md text-sm font-medium text-gray-500 cursor-pointer">kg</button>
+        </div>
+      </div>
+      <%= f.hidden_field :weight_unit, value: @workout.weight_unit, data: { workout_form_target: "unitField" } %>
     </div>
 
-    <div id="workout_exercises" data-workout-form-target="exercises">
+    <div>
+      <button type="button"
+              data-action="workout-form#addExerciseToTemplate"
+              class="inline-flex items-center px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-md">
+        Add Exercise
+      </button>
+    </div>
+
+    <!-- Exercise Fields -->
+    <div id="workout_exercises" data-workout-form-target="exercises" class="space-y-4">
       <%= f.fields_for :workout_exercises do |we_form| %>
         <%= render 'workout_exercise_fields', f: we_form %>
       <% end %>
     </div>
 
-    <button type="button"
-      data-action="workout-form#addExerciseToTemplate">
-      Add Exercise
-    </button>
+    <%= render 'workout_exercise_fields_template', form: f %>
 
-    <div>
-      <%= f.submit %>
+    <!-- Submit Button at the Bottom -->
+    <div class="flex justify-end pt-4">
+      <%= button_tag type: "submit" do %>
+        <div class="flex items-center main-button">
+          <%= inline_svg "icons/save.svg", class: "responsive-icon mr-2" %>
+          Save Template
+        </div>
+      <% end %>
     </div>
 
-    <%= render 'workout_exercise_fields_template', form: f %>
-  <% end %>
-</div>
+  </div>
+<% end %>

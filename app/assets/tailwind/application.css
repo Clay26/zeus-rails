@@ -10,6 +10,13 @@
   }
 
   .main-button {
-    @apply !bg-blue-500 !text-white rounded-lg font-medium px-4 py-2 gap-2 cursor-pointer;
+    @apply !bg-blue-500 !text-white transition duration-150 rounded-lg font-medium px-4 py-2 gap-2 cursor-pointer;
+  }
+
+  .main-button:hover {
+    @apply !bg-blue-600;
+  }
+
+  .secondary-button {
   }
 }

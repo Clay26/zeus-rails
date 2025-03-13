@@ -1,5 +1,6 @@
 <div data-controller="workout-form">
-  <%= form_with model: workout, url: workouts_path(template: true), local: true do |f| %>
+  <%= form_with model: workout, local: true do |f| %>
+    <%= hidden_field_tag :template, params[:template] || @workout.is_template %>
     <div>
       <%= f.label :name %><br>
       <%= f.text_field :name %>

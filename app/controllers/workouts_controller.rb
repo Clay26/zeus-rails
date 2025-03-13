@@ -19,10 +19,6 @@ class WorkoutsController < ApplicationController
     end
   end
 
-  def templates
-    @workouts = current_user.workouts.where(is_template: true)
-  end
-
   def show
   end
 
@@ -46,8 +42,6 @@ class WorkoutsController < ApplicationController
   end
 
   def update
-    @workout.is_template = params[:template] == "true"
-
     if @workout.update(workout_params)
       redirect_to @workout, notice: "Workout was successfully updated."
     else
@@ -64,7 +58,7 @@ class WorkoutsController < ApplicationController
   private
   def workout_params
     params.require(:workout).permit(
-      :name, :notes, :started_at, :ended_at, :status, :is_template,
+      :name, :notes, :started_at, :ended_at, :status,
       workout_exercises_attributes: [
         :id, :exercise_id, :notes, :order, :_destroy,
         exercise_sets_attributes: [

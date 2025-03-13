@@ -23,15 +23,15 @@
       <!-- Weight Unit toggle -->
       <div class="mt-6 flex items-center">
         <span class="text-sm font-medium text-gray-600 mr-3">Weight Unit:</span>
-        <div class="bg-gray-100 rounded-lg p-0.5 flex shadow-inner">
+        <div class="bg-gray-100 rounded-lg p-0.5 flex grow shadow-inner max-w-30">
           <button data-action="workout-form#toggleUnit",
                   data-workout-form-target="toggle",
                   data-unit="lbs",
-                  class="px-4 py-1.5 rounded-md text-sm font-medium text-gray-500 cursor-pointer active">lbs</button>
+                  class="flex-1 text-center px-4 py-1.5 rounded-md text-sm font-medium text-gray-500 cursor-pointer active">lbs</button>
           <button data-action="workout-form#toggleUnit",
                   data-workout-form-target="toggle",
                   data-unit="kg",
-                  class="px-4 py-1.5 rounded-md text-sm font-medium text-gray-500 cursor-pointer">kg</button>
+                  class="flex-1 text-center px-4 py-1.5 rounded-md text-sm font-medium text-gray-500 cursor-pointer">kg</button>
         </div>
       </div>
       <%= f.hidden_field :weight_unit, value: @workout.weight_unit, data: { workout_form_target: "unitField" } %>

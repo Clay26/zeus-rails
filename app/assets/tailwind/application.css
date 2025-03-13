@@ -9,14 +9,31 @@
     @apply !bg-blue-500 !text-white !shadow-sm;
   }
 
+  .button {
+    @apply transition duration-150 rounded-lg font-medium px-4 py-2 gap-2 cursor-pointer;
+  }
+
   .main-button {
-    @apply !bg-blue-500 !text-white transition duration-150 rounded-lg font-medium px-4 py-2 gap-2 cursor-pointer;
+    @apply !bg-blue-500 !text-white;
   }
 
   .main-button:hover {
-    @apply !bg-blue-600;
+    @apply bg-blue-600;
   }
 
   .secondary-button {
+    @apply !bg-indigo-50 !text-indigo-600;
+  }
+
+  .secondary-button:hover {
+    @apply bg-blue-100 text-indigo-800;
+  }
+
+  .tab {
+    @apply transition duration-150 text-gray-500 hover:text-indigo-800 hover:bg-indigo-100 rounded-lg font-medium px-4 py-2 gap-2;
+  }
+
+  .tab:hover {
+    @apply text-indigo-800 bg-indigo-100;
   }
 }

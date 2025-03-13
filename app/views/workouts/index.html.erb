@@ -12,7 +12,7 @@
       <div class="flex gap-2">
         <%= link_to url_for(request.path_parameters.merge(request.query_parameters).merge(tab: "completed")),
           data: {turbo_frame: "workouts", workout_tab_target: "tab"} do %>
-          <div class="flex items-center text-gray-500 hover:text-indigo-800 hover:bg-indigo-100 rounded-lg font-medium px-4 py-2 gap-2">
+          <div class="flex items-center tab">
             <%= inline_svg_tag "icons/layout-grid.svg", class: "responsive-icon h-5 w-5" %>
             Completed
           </div>
@@ -20,7 +20,7 @@
 
         <%= link_to url_for(request.path_parameters.merge(request.query_parameters).merge(tab: "templates")),
           data: {turbo_frame: "workouts", workout_tab_target: "tab"} do %>
-          <div class="flex items-center text-gray-500 hover:text-indigo-800 hover:bg-indigo-100 rounded-lg font-medium px-4 py-2 gap-2">
+          <div class="flex items-center tab">
             <%= inline_svg_tag "icons/notebook-text.svg", class: "responsive-icon h-5 w-5" %>
             Templates
           </div>
@@ -28,7 +28,7 @@
 
         <%= link_to url_for(request.path_parameters.merge(request.query_parameters).merge(tab: "stats")),
           data: {turbo_frame: "workouts", workout_tab_target: "tab"} do %>
-          <div class="flex items-center text-gray-500 hover:text-indigo-800 hover:bg-indigo-100 rounded-lg font-medium px-4 py-2 gap-2">
+          <div class="flex items-center tab">
             <%= inline_svg_tag "icons/chart-no-axes-column-increasing.svg", class: "responsive-icon h-5 w-5" %>
             Stats
           </div>

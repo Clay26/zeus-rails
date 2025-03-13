@@ -37,12 +37,17 @@
       <%= f.hidden_field :weight_unit, value: @workout.weight_unit, data: { workout_form_target: "unitField" } %>
     </div>
 
-    <div>
-      <button type="button"
-              data-action="workout-form#addExerciseToTemplate"
-              class="inline-flex items-center px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-md">
-        Add Exercise
-      </button>
+    <div class="bg-white rounded-xl shadow-sm mb-8 p-8 border border-gray-100">
+    <div class="flex justify-between items-center">
+      <h2 class="text-xl font-semibold text-gray-700">Exercises</h2>
+      <%= button_tag type: "button",
+          data: { action: "workout-form#addExerciseToTemplate" },
+          class: "button secondary-button" do %>
+        <div class="flex items-center">
+          <%= inline_svg "icons/plus.svg", class: "w-5.5 h-4.5 mr-1" %>
+          Add Exercise
+        </div>
+      <% end %>
     </div>
 
     <!-- Exercise Fields -->
@@ -51,6 +56,7 @@
         <%= render 'workout_exercise_fields', f: we_form %>
       <% end %>
     </div>
+    </div>
 
     <%= render 'workout_exercise_fields_template', form: f %>
 
@@ -58,7 +64,7 @@
     <div class="flex justify-end pt-4">
       <%= button_tag type: "submit" do %>
         <div class="flex items-center button main-button">
-          <%= inline_svg "icons/save.svg", class: "responsive-icon mr-2" %>
+          <%= inline_svg "icons/save.svg", class: "w-5 h-5 mr-1" %>
           Save Template
         </div>
       <% end %>

@@ -1,0 +1,12 @@
+<div class="exercise-set-fields" id="<%= dom_id(f.object) %>">
+  <%= f.number_field :set_number, placeholder: "Set #" %>
+  <%= f.number_field :reps, placeholder: "Reps" %>
+  <%= f.number_field :weight, placeholder: "Weight" %>
+  <%= f.text_field :notes, placeholder: "Notes" %>
+
+  <button type="button"
+    data-action="workout-form#removeExerciseSetFromTemplate"
+    data-exercise-set-id="<%= f.object.id %>">
+    Remove Set
+  </button>
+</div>

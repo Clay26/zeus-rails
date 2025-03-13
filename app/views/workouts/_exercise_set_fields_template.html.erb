@@ -1,0 +1,5 @@
+<template data-workout-form-target="setTemplate">
+  <%= form.fields_for :exercise_sets, ExerciseSet.new, child_index: "NEW_RECORD" do |es_form| %>
+    <%= render 'exercise_set_fields', f: es_form %>
+  <% end %>
+</template>

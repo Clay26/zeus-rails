@@ -1,0 +1,24 @@
+<div class="workout-exercise-fields" id="<%= dom_id(f.object) %>">
+  <%= f.collection_select :exercise_id, Exercise.all, :id, :name, prompt: "Select Exercise" %>
+  <%= f.text_area :notes, placeholder: "Exercise notes" %>
+
+  <div class="exercise-sets" data-workout-form-target="exerciseSets">
+    <%= f.fields_for :exercise_sets do |es_form| %>
+      <%= render 'exercise_set_fields', f: es_form %>
+    <% end %>
+  </div>
+
+  <button type="button"
+    data-action="workout-form#addExerciseSetToTemplate"
+    data-exercise-index="<%= f.index %>">
+    Add Set
+  </button>
+
+  <button type="button"
+    data-action="workout-form#removeExerciseFromTemplate"
+    data-exercise-id="<%= f.object.id %>">
+    Remove Exercise
+  </button>
+
+  <%= render 'exercise_set_fields_template', form: f %>
+</div>

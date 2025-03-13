@@ -1,0 +1,5 @@
+<template data-workout-form-target="exerciseTemplate">
+  <%= form.fields_for :workout_exercises, WorkoutExercise.new, child_index: "NEW_RECORD" do |we_form| %>
+    <%= render 'workout_exercise_fields', f: we_form %>
+  <% end %>
+</template>

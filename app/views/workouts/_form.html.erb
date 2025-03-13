@@ -1,0 +1,25 @@
+<div data-controller="workout-form">
+  <%= form_with model: workout, url: workouts_path(template: true), local: true do |f| %>
+    <div>
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+
+    <div id="workout_exercises" data-workout-form-target="exercises">
+      <%= f.fields_for :workout_exercises do |we_form| %>
+        <%= render 'workout_exercise_fields', f: we_form %>
+      <% end %>
+    </div>
+
+    <button type="button"
+      data-action="workout-form#addExerciseToTemplate">
+      Add Exercise
+    </button>
+
+    <div>
+      <%= f.submit %>
+    </div>
+
+    <%= render 'workout_exercise_fields_template', form: f %>
+  <% end %>
+</div>

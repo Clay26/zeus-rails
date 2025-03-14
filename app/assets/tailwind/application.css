@@ -1,6 +1,18 @@
 @import "tailwindcss";
 
 @layer components {
+  .icon {
+    @apply transition duration-150 text-gray-400 rounded-full p-2
+  }
+
+  .icon:hover {
+    @apply text-indigo-600 bg-indigo-50
+  }
+
+  .delete-icon:hover {
+    @apply text-red-600 bg-red-50
+  }
+
   .responsive-icon {
     @apply h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6;
   }

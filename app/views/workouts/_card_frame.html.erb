@@ -19,12 +19,12 @@
         <%= link_to edit_path,
           target: "_top",
           data: { action: "click->clickable-card#stop" },
-          class: "p-2 text-gray-500 hover:text-indigo-600 hover:bg-indigo-50 rounded-full" do %>
+          class: "icon" do %>
           <%= inline_svg_tag "icons/pencil-line.svg", class: "responsive-icon" %>
         <% end %>
         <%= button_to delete_path, method: :delete, 
           data: { action: "click->clickable-card#stop" },
-          class: "p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-full cursor-pointer",
+          class: "icon delete-icon cursor-pointer",
           form: { data: { turbo_confirm: "Are you sure?" } } do %>
           <%= inline_svg_tag "icons/trash-2.svg", class: "responsive-icon" %>
         <% end %>

@@ -37,7 +37,7 @@
       <%= f.hidden_field :weight_unit, value: @workout.weight_unit, data: { workout_form_target: "unitField" } %>
     </div>
 
-    <div class="bg-white rounded-xl shadow-sm mb-8 p-8 border border-gray-100">
+    <div class="flex flex-col gap-6 bg-white rounded-xl shadow-sm mb-8 p-8 border border-gray-100">
     <div class="flex justify-between items-center">
       <h2 class="text-xl font-semibold text-gray-700">Exercises</h2>
       <%= button_tag type: "button",

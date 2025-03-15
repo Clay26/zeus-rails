@@ -1,7 +1,7 @@
 <% workout_exercise = f.object %>
 
 <div id="<%= dom_id(workout_exercise) %>"
-     class="workout-exercise-fields shadow-sm border border-gray-200 rounded-lg flex flex-col">
+     class="workout-exercise-fields shadow-sm border border-gray-200 rounded-lg flex flex-col gap-4">
      <div class="flex justify-between py-4 px-5 bg-gray-100 text-gray-700">
        <div class="flex items-center gap-4">
 
@@ -34,7 +34,7 @@
            <%= inline_svg_tag "icons/chevron-down.svg", class: "responsive-icon" %>
          <% end %>
          <%= button_tag type: "button",
-           data: { action: "click->clickable-card#stop" },
+           data: { action: "workout-form#removeExerciseFromTemplate" },
            class: "icon delete-icon cursor-pointer" do %>
            <%= inline_svg_tag "icons/x.svg", class: "responsive-icon" %>
          <% end %>
@@ -42,45 +42,40 @@
      </div>
 
 
-     <div class="flex flex-col px-4 py-5">
-      <div>
-        <table class="table-auto min-w-full divide-y divide-gray-100">
-          <thead>
-            <tr>
-              <th class="w-10 table-header text-center">Set</th>
-              <th class="table-header text-left">Reps</th>
-              <th class="table-header text-left">Weight</th>
-              <th class="w-1/2 table-header text-left">Notes</th>
-              <th class="w-10 table-header"></th>
-            </tr>
-          </thead>
-          <tbody
-          data-workout-form-target="exerciseSetTable"
-          class="divide-y divide-gray-100">
-         <%= f.fields_for :exercise_sets do |es_form| %>
-           <%= render 'exercise_set_fields', f: es_form %>
-         <% end %>
-          </tbody>
-        </table>
+     <div class="flex flex-col px-4">
+         <table class="table-auto min-w-full divide-y divide-gray-100">
+           <thead>
+             <tr>
+               <th class="w-10 table-header text-center">Set</th>
+               <th class="table-header text-left">Reps</th>
+               <th class="table-header text-left">Weight</th>
+               <th class="w-1/2 table-header text-left">Notes</th>
+               <th class="w-10 table-header"></th>
+             </tr>
+           </thead>
+           <tbody
+               data-workout-form-target="exerciseSetTable"
+               class="divide-y divide-gray-100">
+             <%= f.fields_for :exercise_sets do |es_form| %>
+               <%= render 'exercise_set_fields', f: es_form %>
+             <% end %>
+           </tbody>
+         </table>
        </div>
 
-       <button type="button"
-               data-action="workout-form#addExerciseSetToTemplate"
-               data-exercise-index="<%= f.index %>">
-               Add Set
-       </button>
-
-       <button type="button"
-               data-action="workout-form#removeExerciseFromTemplate"
-               data-exercise-id="<%= f.object.id %>">
-               Remove Exercise
-       </button>
-
-       <%= f.text_area :notes,
-         placeholder: "Exercise notes...",
-         class: "pl-3 pt-3 border border-gray-200 rounded-lg shadown-sm"
-       %>
-     </div>
+       <div class="px-4 mb-4">
+         <%= button_tag type: "button",
+         data: { action: "workout-form#addExerciseSetToTemplate", exercise_index: f.index },
+                 class: "button secondary-button bg-white text-sm" do %>
+                 <div class="flex items-center">
+                 <%= inline_svg "icons/plus.svg", class: "w-4 h-3.5 mr-1" %>
+                 <span>
+                 Add Set
+                 </span>
+                 </div>
+               <% end %>
+         </button>
+        </div>
 
      <%= render 'exercise_set_fields_template', form: f %>
 </div>

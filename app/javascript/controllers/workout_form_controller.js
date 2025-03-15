@@ -5,7 +5,7 @@ export default class extends Controller {
 
   connect() {
     this.showSelectedUnit()
-    this.updateSetNumbers()
+    this.updateAllSetNumbers()
   }
 
   addExerciseToTemplate(event) {
@@ -41,15 +41,16 @@ export default class extends Controller {
     const content = this.setTemplateTarget.innerHTML.replace(/NEW_RECORD/g, new Date().getTime())
     exerciseSetTableParent.insertAdjacentHTML("beforeend", content)
 
-    this.updateSetNumbers()
+    this.updateSetNumbersForTable(exerciseSetTableParent)
   }
 
   removeExerciseSetFromTemplate(event) {
     event.preventDefault()
     const wrapper = event.currentTarget.closest(".exercise-set-fields")
+    const setTable = wrapper.closest('[data-workout-form-target="exerciseSetTable"]')
     wrapper.remove()
 
-    this.updateSetNumbers()
+    this.updateSetNumbersForTable(setTable)
   }
 
   toggleUnit(event) {
@@ -73,7 +74,7 @@ export default class extends Controller {
     });
   }
 
-  updateSetNumbers() {
+  updateAllSetNumbers() {
     const exerciseSetTables = this.exerciseSetTableTargets
 
     exerciseSetTables.forEach((table) => {
@@ -94,6 +95,27 @@ export default class extends Controller {
         })
     })
   }
+
+  updateSetNumbersForTable(setTable) {
+    if (!setTable) {
+      console.error("Exercise set table is null.")
+      return;
+    }
+
+    const exerciseSets = setTable.querySelectorAll(".exercise-set-fields")
+
+    exerciseSets.forEach((set, idx) => {
+      const setNumber = idx + 1
+
+      const visibleSetNumber = set.querySelector('.visible-set-number')
+      if (visibleSetNumber) {
+        visibleSetNumber.textContent = setNumber
+      }
+
+      const hiddenSetNumber = set.querySelector('.hidden-set-number')
+      if (hiddenSetNumber) {
+        hiddenSetNumber.value = setNumber
+      }
     })
   }
 }

@@ -1,9 +1,14 @@
 <% exercise_set = f.object %>
 
-  <tr id="<%= dom_id(exercise_set) %>",
+  <tr id="<%= dom_id(exercise_set) %>"
+    data-workout-form-target="exerciseSetRow"
     class="exercise-set-fields whitespace-nowrap text-sm text-gray-600 font-medium text-center">
+
     <td class="table-form-row">
-      <%= exercise_set.set_number.to_s || "2" %>
+      <span class="visible-set-number">1</span>
+      <%= f.hidden_field :set_number,
+        value: 1,
+        class: 'hidden-set-number' %>
     </td>
 
     <td class="table-form-row">
@@ -19,7 +24,7 @@
         placeholder: "Weight"
       %>
 
-      <span class="text-gray-500">
+      <span class="text-gray-500 pl-2">
         <%= exercise_set.workout_exercise&.workout&.weight_unit || "lbs" %>
       </span>
       </div>

@@ -1,10 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["exercises", "exerciseTemplate", "exerciseSets", "setTemplate", "toggle", "unitField"]
+  static targets = ["exercises", "exerciseTemplate", "exerciseSets", "exerciseSetRow", "setTemplate", "toggle", "unitField", "hiddenTest"]
 
   connect() {
     this.showSelectedUnit()
+    this.updateSetNumbers()
   }
 
   addExerciseToTemplate(event) {
@@ -25,12 +26,16 @@ export default class extends Controller {
 
     const content = this.setTemplateTarget.innerHTML.replace(/NEW_RECORD/g, new Date().getTime())
     this.exerciseSetsTarget.insertAdjacentHTML("beforeend", content)
+
+    this.updateSetNumbers()
   }
 
   removeExerciseSetFromTemplate(event) {
     event.preventDefault()
     const wrapper = event.currentTarget.closest(".exercise-set-fields")
     wrapper.remove()
+
+    this.updateSetNumbers()
   }
 
   toggleUnit(event) {
@@ -52,5 +57,23 @@ export default class extends Controller {
         button.classList.remove("active")
       }
     });
+  }
+
+  updateSetNumbers() {
+    const exerciseSetRows = this.exerciseSetRowTargets
+
+    exerciseSetRows.forEach((row, idx) => {
+      const setNumber = idx + 1
+
+      const visibleSetNumber = row.querySelector('.visible-set-number')
+      if (visibleSetNumber) {
+        visibleSetNumber.textContent = setNumber
+      }
+
+      const hiddenSetNumber = row.querySelector('.hidden-set-number')
+      if (hiddenSetNumber) {
+        hiddenSetNumber.value = setNumber
+      }
+    })
   }
 }

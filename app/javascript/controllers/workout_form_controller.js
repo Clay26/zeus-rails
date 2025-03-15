@@ -24,8 +24,22 @@ export default class extends Controller {
   addExerciseSetToTemplate(event) {
     event.preventDefault()
 
+    const exerciseParent = event.currentTarget.closest(".workout-exercise-fields")
+
+    if (!exerciseParent) {
+      console.error("Unable to find exercise to add set to.")
+      return;
+    }
+
+    const exerciseSetTableParent = exerciseParent.querySelector('[data-workout-form-target="exerciseSetTable"]')
+
+    if (!exerciseSetTableParent) {
+      console.error("Unable to find exercise sets parent to add set to.")
+      return;
+    }
+
     const content = this.setTemplateTarget.innerHTML.replace(/NEW_RECORD/g, new Date().getTime())
-    this.exerciseSetsTarget.insertAdjacentHTML("beforeend", content)
+    exerciseSetTableParent.insertAdjacentHTML("beforeend", content)
 
     this.updateSetNumbers()
   }

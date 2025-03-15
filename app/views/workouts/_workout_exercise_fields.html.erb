@@ -1,24 +1,84 @@
-<div class="workout-exercise-fields" id="<%= dom_id(f.object) %>">
-  <%= f.collection_select :exercise_id, Exercise.all, :id, :name, prompt: "Select Exercise" %>
-  <%= f.text_area :notes, placeholder: "Exercise notes" %>
+<% workout_exercise = f.object %>
 
-  <div class="exercise-sets" data-workout-form-target="exerciseSets">
-    <%= f.fields_for :exercise_sets do |es_form| %>
-      <%= render 'exercise_set_fields', f: es_form %>
-    <% end %>
-  </div>
+<div id="<%= dom_id(workout_exercise) %>"
+     class="workout-exercise-fields shadow-sm border border-gray-200 rounded-lg flex flex-col">
+     <div class="flex justify-between py-4 px-5 bg-gray-100 text-gray-700">
+       <div class="flex items-center gap-4">
 
-  <button type="button"
-    data-action="workout-form#addExerciseSetToTemplate"
-    data-exercise-index="<%= f.index %>">
-    Add Set
-  </button>
+         <div>
+           <span class="flex items-center justify-center w-9 h-9 bg-indigo-100 text-indigo-600 rounded-full font-medium shadow-sm">
+             1
+           </span>
+         </div>
 
-  <button type="button"
-    data-action="workout-form#removeExerciseFromTemplate"
-    data-exercise-id="<%= f.object.id %>">
-    Remove Exercise
-  </button>
+         <div>
+           <h3 class="font-medium"><%= workout_exercise.exercise&.name || "Select an Exercise" %></h3>
+           <p class="text-sm text-gray-500"><%= workout_exercise.exercise&.category || ""%></p>
+         </div>
+       </div>
 
-  <%= render 'exercise_set_fields_template', form: f %>
+       <div class="flex gap-2 text-gray-500">
+         <%= button_tag type: "button",
+           data: { action: "" },
+           class: "icon cursor-pointer" do %>
+           <%= inline_svg_tag "icons/pencil-line.svg", class: "responsive-icon" %>
+         <% end %>
+         <%= button_tag type: "button",
+           data: { action: "" },
+           class: "icon cursor-pointer" do %>
+           <%= inline_svg_tag "icons/chevron-up.svg", class: "responsive-icon" %>
+         <% end %>
+         <%= button_tag type: "button",
+           data: { action: "" },
+           class: "icon cursor-pointer" do %>
+           <%= inline_svg_tag "icons/chevron-down.svg", class: "responsive-icon" %>
+         <% end %>
+         <%= button_tag type: "button",
+           data: { action: "click->clickable-card#stop" },
+           class: "icon delete-icon cursor-pointer" do %>
+           <%= inline_svg_tag "icons/x.svg", class: "responsive-icon" %>
+         <% end %>
+       </div>
+     </div>
+
+
+     <div class="flex flex-col px-4 py-5">
+      <div class="exercise-sets" data-workout-form-target="exerciseSets">
+        <table class="table-auto min-w-full divide-y divide-gray-100">
+          <thead>
+            <tr>
+              <th class="w-10 table-header text-center">Set</th>
+              <th class="table-header text-left">Reps</th>
+              <th class="table-header text-left">Weight</th>
+              <th class="w-1/2 table-header text-left">Notes</th>
+              <th class="w-10 table-header"></th>
+            </tr>
+          </thead>
+          <tbody="divide-y divide-gray-100">
+         <%= f.fields_for :exercise_sets do |es_form| %>
+           <%= render 'exercise_set_fields', f: es_form %>
+         <% end %>
+          </tbody>
+        </table>
+       </div>
+
+       <button type="button"
+               data-action="workout-form#addExerciseSetToTemplate"
+               data-exercise-index="<%= f.index %>">
+               Add Set
+       </button>
+
+       <button type="button"
+               data-action="workout-form#removeExerciseFromTemplate"
+               data-exercise-id="<%= f.object.id %>">
+               Remove Exercise
+       </button>
+
+       <%= f.text_area :notes,
+         placeholder: "Exercise notes...",
+         class: "pl-3 pt-3 border border-gray-200 rounded-lg shadown-sm"
+       %>
+     </div>
+
+     <%= render 'exercise_set_fields_template', form: f %>
 </div>

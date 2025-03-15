@@ -9,6 +9,10 @@
     @apply text-indigo-600 bg-indigo-50
   }
 
+  .delete-icon {
+    @apply text-red-400
+  }
+
   .delete-icon:hover {
     @apply text-red-600 bg-red-50
   }
@@ -47,5 +51,17 @@
 
   .tab:hover {
     @apply text-indigo-800 bg-indigo-100;
+  }
+  
+  .table-header {
+    @apply uppercase text-gray-500 text-xs font-medium tracking-wider p-3;
+  }
+
+  .table-form-row {
+    @apply px-2 py-3 whitespace-nowrap;
+  }
+
+  .table-form-field {
+    @apply border border-gray-200 rounded-lg shadow-sm px-3 py-2;
   }
 }

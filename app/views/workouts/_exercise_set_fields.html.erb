@@ -1,12 +1,39 @@
-<div class="exercise-set-fields" id="<%= dom_id(f.object) %>">
-  <%= f.number_field :set_number, placeholder: "Set #" %>
-  <%= f.number_field :reps, placeholder: "Reps" %>
-  <%= f.number_field :weight, placeholder: "Weight" %>
-  <%= f.text_field :notes, placeholder: "Notes" %>
+<% exercise_set = f.object %>
 
-  <button type="button"
-    data-action="workout-form#removeExerciseSetFromTemplate"
-    data-exercise-set-id="<%= f.object.id %>">
-    Remove Set
-  </button>
+<div class="exercise-set-fields" id="<%= dom_id(exercise_set) %>">
+  <tr class="whitespace-nowrap text-sm text-gray-600 font-medium text-center">
+    <td class="table-form-row">
+      <%= exercise_set.set_number.to_s || f.index + 1 %>
+    </td>
+    <td class="table-form-row">
+      <%= f.number_field :reps,
+        placeholder: "Reps",
+        class: "table-form-field w-full"
+      %>
+    </td>
+    <td class="table-form-row">
+      <div class="table-form-field flex items-center">
+      <%= f.number_field :weight,
+        placeholder: "Weight"
+      %>
+      <span class="text-gray-500">
+        <%= exercise_set.workout_exercise&.workout&.weight_unit || "lbs" %>
+      </span>
+      </div>
+    </td>
+    <td class="table-form-row">
+      <%= f.text_field :notes,
+        placeholder: "Optional",
+        class: "table-form-field w-full"
+      %>
+    </td>
+    <td class="table-form-row">
+      <%= button_tag type: "button",
+        data: { action: "workout-form#removeExerciseSetFromTemplate", exercise_set_id: "#{exercise_set.id}" },
+        class: "icon delete-icon cursor-pointer" do %>
+        <%= inline_svg_tag "icons/x.svg", class: "responsive-icon" %>
+      <% end %>
+    </td>
+  </tr>
+
 </div>

@@ -38,7 +38,7 @@
   }
 
   .secondary-button {
-    @apply !bg-indigo-50 !text-indigo-600;
+    @apply bg-indigo-50 text-indigo-600;
   }
 
   .secondary-button:hover {

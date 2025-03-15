@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["exercises", "exerciseTemplate", "exerciseSets", "exerciseSetRow", "setTemplate", "toggle", "unitField", "hiddenTest"]
+  static targets = ["exercises", "exerciseTemplate", "exerciseSetTable", "exerciseSetRow", "setTemplate", "toggle", "unitField", "hiddenTest"]
 
   connect() {
     this.showSelectedUnit()
@@ -74,20 +74,26 @@ export default class extends Controller {
   }
 
   updateSetNumbers() {
-    const exerciseSetRows = this.exerciseSetRowTargets
+    const exerciseSetTables = this.exerciseSetTableTargets
 
-    exerciseSetRows.forEach((row, idx) => {
-      const setNumber = idx + 1
+    exerciseSetTables.forEach((table) => {
+      const exerciseSets = table.querySelectorAll(".exercise-set-fields")
 
-      const visibleSetNumber = row.querySelector('.visible-set-number')
-      if (visibleSetNumber) {
-        visibleSetNumber.textContent = setNumber
-      }
+      exerciseSets.forEach((set, idx) => {
+        const setNumber = idx + 1
 
-      const hiddenSetNumber = row.querySelector('.hidden-set-number')
-      if (hiddenSetNumber) {
-        hiddenSetNumber.value = setNumber
-      }
+        const visibleSetNumber = set.querySelector('.visible-set-number')
+        if (visibleSetNumber) {
+          visibleSetNumber.textContent = setNumber
+        }
+
+        const hiddenSetNumber = set.querySelector('.hidden-set-number')
+        if (hiddenSetNumber) {
+          hiddenSetNumber.value = setNumber
+        }
+        })
+    })
+  }
     })
   }
 }

@@ -1,9 +1,9 @@
 <% exercise_set = f.object %>
 
-<div class="exercise-set-fields" id="<%= dom_id(exercise_set) %>">
-  <tr class="whitespace-nowrap text-sm text-gray-600 font-medium text-center">
+  <tr id="<%= dom_id(exercise_set) %>",
+    class="exercise-set-fields whitespace-nowrap text-sm text-gray-600 font-medium text-center">
     <td class="table-form-row">
-      <%= exercise_set.set_number.to_s || f.index + 1 %>
+      <%= exercise_set.set_number.to_s || "2" %>
     </td>
 
     <td class="table-form-row">
@@ -41,4 +41,3 @@
     </td>
 
   </tr>
-</div>

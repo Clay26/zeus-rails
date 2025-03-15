@@ -43,7 +43,7 @@
 
 
      <div class="flex flex-col px-4 py-5">
-      <div class="exercise-sets" data-workout-form-target="exerciseSets">
+      <div>
         <table class="table-auto min-w-full divide-y divide-gray-100">
           <thead>
             <tr>
@@ -54,7 +54,9 @@
               <th class="w-10 table-header"></th>
             </tr>
           </thead>
-          <tbody="divide-y divide-gray-100">
+          <tbody
+          data-workout-form-target="exerciseSets",
+          class="divide-y divide-gray-100">
          <%= f.fields_for :exercise_sets do |es_form| %>
            <%= render 'exercise_set_fields', f: es_form %>
          <% end %>

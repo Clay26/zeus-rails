@@ -5,28 +5,33 @@
     <td class="table-form-row">
       <%= exercise_set.set_number.to_s || f.index + 1 %>
     </td>
+
     <td class="table-form-row">
       <%= f.number_field :reps,
         placeholder: "Reps",
         class: "table-form-field w-full"
       %>
     </td>
+
     <td class="table-form-row">
       <div class="table-form-field flex items-center">
       <%= f.number_field :weight,
         placeholder: "Weight"
       %>
+
       <span class="text-gray-500">
         <%= exercise_set.workout_exercise&.workout&.weight_unit || "lbs" %>
       </span>
       </div>
     </td>
+
     <td class="table-form-row">
       <%= f.text_field :notes,
         placeholder: "Optional",
         class: "table-form-field w-full"
       %>
     </td>
+
     <td class="table-form-row">
       <%= button_tag type: "button",
         data: { action: "workout-form#removeExerciseSetFromTemplate", exercise_set_id: "#{exercise_set.id}" },
@@ -34,6 +39,6 @@
         <%= inline_svg_tag "icons/x.svg", class: "responsive-icon" %>
       <% end %>
     </td>
-  </tr>
 
+  </tr>
 </div>

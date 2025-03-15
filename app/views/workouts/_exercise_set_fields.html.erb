@@ -2,6 +2,7 @@
 
   <tr id="<%= dom_id(exercise_set) %>"
     data-workout-form-target="exerciseSetRow"
+    data-new-record="<%= exercise_set.new_record? %>"
     class="exercise-set-fields whitespace-nowrap text-sm text-gray-600 font-medium text-center">
 
     <%= f.hidden_field :_destroy,

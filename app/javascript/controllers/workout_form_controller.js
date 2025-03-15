@@ -50,8 +50,12 @@ export default class extends Controller {
     const destroyField = row.querySelector('[data-workout-form-target="destroyField"]')
     const setTable = row.closest('[data-workout-form-target="exerciseSetTable"]')
 
-    destroyField.value = true
-    row.style.display = "none"
+    if (row.dataset.newRecord === 'true') {
+      row.remove();
+    } else if (destroyField) {
+      destroyField.value = true
+      row.style.display = "none"
+    }
 
     this.updateSetNumbersForTable(setTable)
   }

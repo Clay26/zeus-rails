@@ -4,6 +4,10 @@
     data-workout-form-target="exerciseSetRow"
     class="exercise-set-fields whitespace-nowrap text-sm text-gray-600 font-medium text-center">
 
+    <%= f.hidden_field :_destroy,
+    value: false,
+    data: { workout_form_target: "destroyField" } %>
+
     <td class="table-form-row">
       <span class="visible-set-number">1</span>
       <%= f.hidden_field :set_number,

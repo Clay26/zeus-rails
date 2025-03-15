@@ -46,9 +46,12 @@ export default class extends Controller {
 
   removeExerciseSetFromTemplate(event) {
     event.preventDefault()
-    const wrapper = event.currentTarget.closest(".exercise-set-fields")
-    const setTable = wrapper.closest('[data-workout-form-target="exerciseSetTable"]')
-    wrapper.remove()
+    const row = event.currentTarget.closest(".exercise-set-fields")
+    const destroyField = row.querySelector('[data-workout-form-target="destroyField"]')
+    const setTable = row.closest('[data-workout-form-target="exerciseSetTable"]')
+
+    destroyField.value = true
+    row.style.display = "none"
 
     this.updateSetNumbersForTable(setTable)
   }
@@ -88,11 +91,13 @@ export default class extends Controller {
       return;
     }
 
-    const exerciseSets = setTable.querySelectorAll(".exercise-set-fields")
+    const allExerciseSets = setTable.querySelectorAll(".exercise-set-fields")
+    const visibleExerciseSets = Array.from(allExerciseSets).filter(
+      (row) => row.style.display !== "none"
+    )
 
-    exerciseSets.forEach((set, idx) => {
+    visibleExerciseSets.forEach((set, idx) => {
       const setNumber = idx + 1
-
       const visibleSetNumber = set.querySelector('.visible-set-number')
       if (visibleSetNumber) {
         visibleSetNumber.textContent = setNumber

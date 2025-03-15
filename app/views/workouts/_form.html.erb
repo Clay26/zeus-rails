@@ -51,7 +51,7 @@
     </div>
 
     <!-- Exercise Fields -->
-    <div id="workout_exercises" data-workout-form-target="exercises" class="space-y-4">
+    <div id="workout_exercises" data-workout-form-target="exercises" class="space-y-8">
       <%= f.fields_for :workout_exercises do |we_form| %>
         <%= render 'workout_exercise_fields', f: we_form %>
       <% end %>

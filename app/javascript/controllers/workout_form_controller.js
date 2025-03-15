@@ -78,21 +78,7 @@ export default class extends Controller {
     const exerciseSetTables = this.exerciseSetTableTargets
 
     exerciseSetTables.forEach((table) => {
-      const exerciseSets = table.querySelectorAll(".exercise-set-fields")
-
-      exerciseSets.forEach((set, idx) => {
-        const setNumber = idx + 1
-
-        const visibleSetNumber = set.querySelector('.visible-set-number')
-        if (visibleSetNumber) {
-          visibleSetNumber.textContent = setNumber
-        }
-
-        const hiddenSetNumber = set.querySelector('.hidden-set-number')
-        if (hiddenSetNumber) {
-          hiddenSetNumber.value = setNumber
-        }
-        })
+      this.updateSetNumbersForTable(table)
     })
   }
 

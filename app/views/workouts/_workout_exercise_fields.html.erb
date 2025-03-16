@@ -13,6 +13,8 @@
 
          <div>
            <h3 class="font-medium"><%= workout_exercise.exercise&.name || "Select an Exercise" %></h3>
+           <%= f.label :exercise_id, "Exercise" %>
+           <%= f.collection_select :exercise_id, Exercise.all, :id, :name, prompt: "Choose" %>
            <p class="text-sm text-gray-500"><%= workout_exercise.exercise&.category || ""%></p>
          </div>
        </div>
@@ -43,41 +45,44 @@
 
 
      <div class="flex flex-col px-4">
-         <table class="table-auto min-w-full divide-y divide-gray-100">
-           <thead>
-             <tr>
-               <th class="w-10 table-header text-center">Set</th>
-               <th class="table-header text-left">Reps</th>
-               <th class="table-header text-left">Weight</th>
-               <th class="w-1/2 table-header text-left">Notes</th>
-               <th class="w-10 table-header"></th>
-             </tr>
-           </thead>
-           <tbody
-               data-workout-form-target="exerciseSetTable"
-               class="divide-y divide-gray-100">
-             <%= f.fields_for :exercise_sets do |es_form| %>
-               <%= render 'exercise_set_fields', f: es_form %>
-             <% end %>
-           </tbody>
-         </table>
-       </div>
+       <table class="table-auto min-w-full divide-y divide-gray-100">
+         <thead>
+           <tr>
+             <th class="w-10 table-header text-center">Set</th>
+             <th class="table-header text-left">Reps</th>
+             <th class="table-header text-left">Weight</th>
+             <th class="w-1/2 table-header text-left">Notes</th>
+             <th class="w-10 table-header"></th>
+           </tr>
+         </thead>
+         <tbody
+             data-workout-form-target="exerciseSetTable"
+             class="divide-y divide-gray-100">
+           <%= f.fields_for :exercise_sets do |es_form| %>
+             <%= render 'exercise_set_fields', f: es_form %>
+           <% end %>
+         </tbody>
+       </table>
+     </div>
 
-       <div class="px-4 mb-4">
-         <%= button_tag type: "button",
-           data: {
-              action: "workout-form#addExerciseSetToTemplate",
-              fields: f.fields_for(:exercise_sets, workout_exercise.exercise_sets.new, child_index: "NEW_RECORD") { |es_form|
-                render("exercise_set_fields", f: es_form)
-              }
-            },
-                 class: "button secondary-button bg-white text-sm" do %>
-                 <div class="flex items-center">
-                 <%= inline_svg "icons/plus.svg", class: "w-4 h-3.5 mr-1" %>
-                 <span>
-                 Add Set
-                 </span>
-                 </div>
-               <% end %>
-        </div>
+     <div class="px-4 mb-4">
+       <%= button_tag type: "button",
+         data: {
+           action: "workout-form#addExerciseSetToTemplate",
+           new_exercise: workout_exercise.new_record?,
+           fields: f.fields_for(:exercise_sets, workout_exercise.exercise_sets.new, child_index: "NEW_SET") { |es_form|
+             render("exercise_set_fields", f: es_form)
+           }
+         },
+         class: "button secondary-button bg-white text-sm" do %>
+         <div class="flex items-center">
+           <%= inline_svg "icons/plus.svg", class: "w-4 h-3.5 mr-1" %>
+           <span>
+             Add Set
+           </span>
+         </div>
+       <% end %>
+     </div>
+
+    <%= render 'exercise_set_fields_template', form: f %>
 </div>

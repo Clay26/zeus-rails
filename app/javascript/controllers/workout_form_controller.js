@@ -11,7 +11,7 @@ export default class extends Controller {
   addExerciseToTemplate(event) {
     event.preventDefault()
 
-    const content = this.exerciseTemplateTarget.innerHTML.replace(/NEW_RECORD/g, new Date().getTime())
+    const content = this.exerciseTemplateTarget.innerHTML.replace(/NEW_EXERCISE/g, new Date().getTime())
     this.exercisesTarget.insertAdjacentHTML("beforeend", content)
   }
 
@@ -24,7 +24,9 @@ export default class extends Controller {
   addExerciseSetToTemplate(event) {
     event.preventDefault()
 
-    const exerciseParent = event.currentTarget.closest(".workout-exercise-fields")
+    const button = event.currentTarget;
+
+    const exerciseParent = button.closest(".workout-exercise-fields")
 
     if (!exerciseParent) {
       console.error("Unable to find exercise to add set to.")
@@ -38,7 +40,8 @@ export default class extends Controller {
       return;
     }
 
-    const content = event.currentTarget.dataset.fields.replace(/NEW_RECORD/g, new Date().getTime())
+    const content = button.dataset.fields.replace(/NEW_SET/g, new Date().getTime())
+
     exerciseSetTableParent.insertAdjacentHTML("beforeend", content)
 
     this.updateSetNumbersForTable(exerciseSetTableParent)

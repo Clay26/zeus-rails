@@ -38,7 +38,7 @@ export default class extends Controller {
       return;
     }
 
-    const content = this.setTemplateTarget.innerHTML.replace(/NEW_RECORD/g, new Date().getTime())
+    const content = event.currentTarget.dataset.fields.replace(/NEW_RECORD/g, new Date().getTime())
     exerciseSetTableParent.insertAdjacentHTML("beforeend", content)
 
     this.updateSetNumbersForTable(exerciseSetTableParent)

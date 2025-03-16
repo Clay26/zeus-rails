@@ -65,7 +65,12 @@
 
        <div class="px-4 mb-4">
          <%= button_tag type: "button",
-         data: { action: "workout-form#addExerciseSetToTemplate", exercise_index: f.index },
+           data: {
+              action: "workout-form#addExerciseSetToTemplate",
+              fields: f.fields_for(:exercise_sets, workout_exercise.exercise_sets.new, child_index: "NEW_RECORD") { |es_form|
+                render("exercise_set_fields", f: es_form)
+              }
+            },
                  class: "button secondary-button bg-white text-sm" do %>
                  <div class="flex items-center">
                  <%= inline_svg "icons/plus.svg", class: "w-4 h-3.5 mr-1" %>
@@ -74,8 +79,5 @@
                  </span>
                  </div>
                <% end %>
-         </button>
         </div>
-
-     <%= render 'exercise_set_fields_template', form: f %>
 </div>

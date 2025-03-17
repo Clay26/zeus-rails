@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["exercises", "exerciseTemplate", "exerciseSetTable", "exerciseSetRow", "setTemplate", "toggle", "unitField", "hiddenTest"]
+  static targets = ["exercises", "exerciseTemplate", "exerciseSetTable", "exerciseSetRow", "setTemplate", "toggle", "unitField", "weightUnitDisplay"]
 
   connect() {
     this.showSelectedUnit()
@@ -44,6 +44,7 @@ export default class extends Controller {
 
     exerciseSetTableParent.insertAdjacentHTML("beforeend", content)
 
+    this.showSelectedUnit()
     this.updateSetNumbersForTable(exerciseSetTableParent)
   }
 
@@ -66,22 +67,28 @@ export default class extends Controller {
   toggleUnit(event) {
     event.preventDefault()
 
+    const selectedWeightUnit = event.currentTarget.innerText.trim().toLowerCase()
+
     this.toggleTargets.forEach((button) => button.classList.remove("active"))
     event.currentTarget.classList.add("active")
 
-    this.unitFieldTarget.value = event.currentTarget.innerText.trim().toLowerCase()
+    this.unitFieldTarget.value = selectedWeightUnit
+
+    this.weightUnitDisplayTargets.forEach((cell) => cell.innerText = selectedWeightUnit)
   }
 
   showSelectedUnit() {
-    const selectedUnit = this.unitFieldTarget.value
+    const selectedWeightUnit = this.unitFieldTarget.value
 
     this.toggleTargets.forEach((button) => {
-      if (button.dataset.unit == selectedUnit) {
+      if (button.dataset.unit == selectedWeightUnit) {
         button.classList.add("active")
       } else {
         button.classList.remove("active")
       }
     });
+
+    this.weightUnitDisplayTargets.forEach((cell) => cell.innerText = selectedWeightUnit)
   }
 
   updateAllSetNumbers() {

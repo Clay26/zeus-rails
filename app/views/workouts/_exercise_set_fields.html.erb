@@ -24,12 +24,12 @@
     </td>
 
     <td class="table-form-row">
-      <div class="table-form-field flex items-center">
+      <div class="table-form-field flex flex-grow items-center">
       <%= f.number_field :weight,
         placeholder: "Weight"
       %>
 
-      <span class="text-gray-500 pl-2">
+      <span data-workout-form-target="weightUnitDisplay" class="text-gray-500 pl-2 min-w-8">
         <%= exercise_set.workout_exercise&.workout&.weight_unit || "lbs" %>
       </span>
       </div>

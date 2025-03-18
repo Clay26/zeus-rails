@@ -3,20 +3,27 @@ class WorkoutsController < ApplicationController
   before_action :set_workout, only: [ :show, :edit, :update, :destroy ]
 
   def index
-    case params[:tab]
-    when "templates"
-      @workouts = current_user.workouts.where(is_template: true).order(started_at: :desc)
-      @partial = "template_list"
-    else
       @workouts = current_user.workouts.where(status: :completed).order(started_at: :desc)
-      @partial = "workout_list"
+  end
+
+  def completed
+    if !turbo_frame_request?
+      redirect_to workouts_path
     end
-    
-    if turbo_frame_request?
-      render partial: @partial, locals: { workouts: @workouts }
-    else
-      render :index
+
+    @workouts = current_user.workouts.where(status: :completed).order(started_at: :desc)
+
+    render partial: "workouts/completed", workouts: @workouts
+  end
+
+  def templates
+    if !turbo_frame_request?
+      redirect_to workouts_path
     end
+
+    @templates = current_user.workouts.where(is_template: true).order(started_at: :desc)
+
+    render partial: "workouts/templates", templates: @templates
   end
 
   def show

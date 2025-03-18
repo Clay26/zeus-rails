@@ -1,0 +1,45 @@
+<div class="flex flex-col gap-4">
+
+  <div class="sticky top-[65px] rounded-lg shadow-sm">
+
+    <div class="bg-white flex justify-between rounded-xl py-6 px-4 border-b-1 border-gray-200 rounded-b-none">
+      <div class="flex items-center gap-4">
+        <%= button_tag type: "button",
+          class: "cursor-pointer" do %>
+          <%= inline_svg_tag "icons/arrow-left.svg", class: "text-gray-400 w-6 h-6 hover:text-gray-600" %>
+        <% end %>
+
+        <h1 class="text-xl font-semibold">Add Exercise</h1>
+      </div>
+
+      <%= link_to 'New Exercise', new_exercise_path, class: "button main-button" %>
+    </div>
+
+    <div class="px-6 py-4 border-b border-gray-200 bg-white">
+      <%= form_with url: exercises_path, method: :get, local: true do |f| %>
+        <div class="flex items-center gap-2 border border-gray-200 rounded-xl shadow-sm focus-within:ring-1 focus-within:ring-indigo-400 focus-within:border-indigo-400 px-3">
+          <%= inline_svg_tag "icons/search.svg", class: "text-gray-400 flex-grow-0", size: "20" %>
+          <%= f.text_field :search, placeholder: "Search exercises...", class: "w-full pr-4 py-3 outline-none border-none bg-transparent" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="px-6 py-4 border-b border-gray-100 bg-white overflow-x-auto flex gap-2 rounded-b-xl">
+      <%= link_to "All", exercises_path,
+        class: "px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap #{params[:category].blank? ? 'bg-indigo-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}"
+      %>
+
+    <% categories.each do |category| %>
+      <%= link_to category, exercises_path(category: category),
+        class: "px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap #{params[:category] == category ? 'bg-indigo-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}"
+      %>
+    <% end %>
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-4">
+    <% exercises.each do |exercise| %>
+      <%= render partial: "exercise_card", locals: { exercise: exercise } %>
+    <% end %>
+  </div>
+</div>

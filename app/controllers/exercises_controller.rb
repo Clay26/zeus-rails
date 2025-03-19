@@ -3,7 +3,18 @@ class ExercisesController < ApplicationController
   before_action :set_exercise, only: [ :show, :edit, :update, :destroy ]
 
   def index
+    @categories = Exercise.pluck(:category).uniq
+
     @exercises = Exercise.all
+
+    filter_by_category
+    filter_by_search
+
+    if turbo_frame_request?
+      render partial: "exercises/exercise_drawer", locals: { categories: @categories, exercises: @exercises }
+    else
+      render :index
+    end
   end
 
   def show
@@ -45,5 +56,17 @@ class ExercisesController < ApplicationController
 
     def set_exercise
       @exercise = Exercise.find(params[:id])
+    end
+
+    def filter_by_category
+      return if params[:category].blank? || params[:category].casecmp?("all")
+
+      @exercises = @exercises.where("LOWER(category) = ?", params[:category].downcase)
+    end
+
+    def filter_by_search
+      return if params[:search].blank?
+
+      @exercises = @exercises.where("name ILIKE ?", "%#{params[:search]}%") if params[:search].present?
     end
 end

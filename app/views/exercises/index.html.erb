@@ -4,8 +4,6 @@
     <%= link_to 'New Exercise', new_exercise_path, class: "button main-button" %>
   </div>
 
-  <%= render partial: "exercise_drawer", locals: { exercises: @exercises, categories: @categories } %>
-
   <div class="overflow-x-auto shadow-md rounded-lg">
     <table class="min-w-full table-auto">
       <thead>

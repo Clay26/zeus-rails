@@ -7,6 +7,11 @@
     </div>
 
     <%= button_tag type: "button",
+      data: {
+        exercise_id: exercise.id,
+        exercise_name: exercise.name,
+        action: "click->workout-form#addExerciseToTemplate"
+      },
       class: "icon cursor-pointer rounded-full h-fit w-fit" do %>
       <%= inline_svg_tag "icons/plus.svg", class: "responsive-icon text-indigo-600 text-center" %>
     <% end %>

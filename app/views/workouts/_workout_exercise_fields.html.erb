@@ -12,10 +12,9 @@
          </div>
 
          <div>
-           <h3 class="font-medium"><%= workout_exercise.exercise&.name || "Select an Exercise" %></h3>
-           <%= f.label :exercise_id, "Exercise" %>
-           <%= f.collection_select :exercise_id, Exercise.all, :id, :name, prompt: "Choose" %>
-           <p class="text-sm text-gray-500"><%= workout_exercise.exercise&.category || ""%></p>
+           <h3 class="font-medium"><%= workout_exercise.exercise&.name || "EXERCISE_NAME" %></h3>
+           <%= f.hidden_field :exercise_id, value: (workout_exercise.exercise_id || "EXERCISE_ID") %>
+           <p class="text-sm text-gray-500"><%= workout_exercise.exercise&.category || "" %></p>
          </div>
        </div>
 

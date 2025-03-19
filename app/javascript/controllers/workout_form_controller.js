@@ -11,7 +11,15 @@ export default class extends Controller {
   addExerciseToTemplate(event) {
     event.preventDefault()
 
-    const content = this.exerciseTemplateTarget.innerHTML.replace(/NEW_EXERCISE/g, new Date().getTime())
+    const button = event.currentTarget;
+    const exerciseId = button.dataset.exerciseId;
+    const exerciseName = button.dataset.exerciseName;
+
+    let content;
+    content = this.exerciseTemplateTarget.innerHTML.replace(/NEW_EXERCISE/g, new Date().getTime())
+    content = content.replace(/EXERCISE_ID/g, exerciseId)
+    content = content.replace(/EXERCISE_NAME/g, exerciseName)
+    console.log(content)
     this.exercisesTarget.insertAdjacentHTML("beforeend", content)
   }
 

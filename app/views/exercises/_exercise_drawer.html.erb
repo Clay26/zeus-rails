@@ -1,10 +1,14 @@
-<div class="flex flex-col gap-4">
+<%= turbo_frame_tag "exercise-drawer" do %>
+<div class="flex flex-col gap-4 h-full bg-gray-150 rounded-lg shadow-lg">
 
-  <div class="sticky top-[65px] rounded-lg shadow-sm" data-controller="filter" data-default="all" data-param="category">
+  <div class="sticky top-0 rounded-lg shadow-sm" data-controller="filter" data-default="all" data-param="category">
 
     <div class="bg-white flex justify-between rounded-xl py-6 px-4 border-b-1 border-gray-200 rounded-b-none">
       <div class="flex items-center gap-4">
         <%= button_tag type: "button",
+          data: {
+            action: "click->drawer#close"
+          },
           class: "cursor-pointer" do %>
           <%= inline_svg_tag "icons/arrow-left.svg", class: "text-gray-400 w-6 h-6 hover:text-gray-600" %>
         <% end %>
@@ -55,9 +59,10 @@
     </div>
   </div>
 
-  <%= turbo_frame_tag "exercise-list-frame", class: "flex flex-col gap-4" do %>
+  <%= turbo_frame_tag "exercise-list-frame", class: "flex flex-col gap-4 overflow-y-auto" do %>
     <% exercises.each do |exercise| %>
       <%= render partial: "exercise_card", locals: { exercise: exercise } %>
     <% end %>
   <% end %>
 </div>
+<% end %>
